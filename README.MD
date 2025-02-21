@@ -28,14 +28,14 @@ Each record can optionally have application-defined metadata. The metadata is en
 
 Record type is a 32 bit value, typically corresponding to an unsigned integer. The bit layout is as follows:
 
-|31|30-16|15-0|
+|bit 31|bits 30-16|bits 15-0|
 |---|---|---|
 |Compression Flag|Reserved;must be 0|Record Type|
 
 
 ### Compression Flag
 
-If compression flag is 1, record data is compressed using ZStandard; if 0, it is an uncompressedf stream of byes;
+If compression flag is 1, record data is compressed using ZStandard; if 0, it is an uncompressed stream of byes;
 
 ### Reserved bits
 
@@ -56,7 +56,7 @@ Record type is a 16 bit unsigned value indicating the content type of the Record
 
 ## Metadata Size
 
-Unsigned 32 bit value indicating metadata size, if metadata is present. The value reflects the size of the compressed stream, not the uncompressed metadata. Metadata can have a compressed size upto 4GB. 
+Unsigned 32 bit value indicating metadata size. The value reflects the size of the compressed stream, not the uncompressed metadata. Metadata can have a compressed size upto 4GB. 
 If no metadata present, this value must be 0.
 
 ## Record Size
