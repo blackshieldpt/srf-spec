@@ -43,14 +43,14 @@ always stored in compressed form using Zstandard with crc suffix.
 
 A Record is composed of a header
 
-| Scope    | Offset | Size in bytes | Description                                             |
-|----------|--------|---------------|---------------------------------------------------------|
-| header   | 0      | 4             | Magic signature: 'SRF0'                                 |
-| header   | 4      | 4             | [Record flags and type](#record-flags-and-type)         |
-| header   | 8      | 4             | [Metadata size](#metadata-size), can be zero, see below |
-| header   | 12     | 8             | [Record size](#record-size)                             |
-| metadata | 20     | 0...n         | Compressed metadata, can be empty if Metadata size is 0 |
-| data     | 20...n | 0...n         | Record data                                             |
+| Scope    | Offset          | Size in bytes | Description                                             |
+|----------|-----------------|---------------|---------------------------------------------------------|
+| header   | 0               | 4             | Magic signature: 'SRF0'                                 |
+| header   | 4               | 4             | [Record flags and type](#record-flags-and-type)         |
+| header   | 8               | 4             | [Metadata size](#metadata-size), can be zero, see below |
+| header   | 12              | 8             | [Record size](#record-size)                             |
+| metadata | 20              | 0...n         | Compressed metadata, can be empty if Metadata size is 0 |
+| data     | 20+metadata...n | 0...n         | Record data                                             |
 
 ### Record Flags and Type
 
@@ -71,6 +71,7 @@ Reserved bits are reserved for future usage, and must have the value 0. Record r
 are actually 0, and fail if they are not.
 
 **Record Type**
+
 Record type is a 16 bit unsigned value indicating the content type of the Record; the first 1024 values (least
 significant 10 bit, from 0-2023) are reserved for system types; the remainder values (1024-65,535) can be used by client
 applications.
